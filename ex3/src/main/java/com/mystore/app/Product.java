@@ -1,28 +1,24 @@
 package com.mystore.app;
 
-class Product {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component  // ✅ Make Product class Spring-managed
+
+public class Product {
     
     private int id;
     private String name;
     private String barcode;
 
-    Barcode barCoder = new Barcode();
+    private Barcode barCoder;
 
-    public Product() {
-        System.out.println("In Product constructor");
-    }
+    // ✅ Step 1: Constructor with @Autowired (Constructor Injection)
+    @Autowired	
 
-    // Getter methods
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getBarcode() {
-        return barcode;
+    public Product(Barcode barCoder) {
+        this.barCoder = barCoder;
+	System.out.println("In Product constructor");
     }
 
     // Setter methods
@@ -36,6 +32,21 @@ class Product {
 
     public void setBarcode() {
         this.barcode = barCoder.createBarcode(this);
+    }
+
+
+
+    // Getter methods
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getBarcode() {
+        return barcode;
     }
 
     @Override

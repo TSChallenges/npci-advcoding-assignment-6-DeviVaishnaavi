@@ -1,6 +1,11 @@
 package com.mystore.app;
 
-class Barcode {
+import org.springframework.stereotype.Component;
+
+@Component  // ✅ This tells Spring: "Manage this Barcode class as a bean"
+
+
+public class Barcode {
 
     public Barcode() {
         System.out.println("In Barcode constructor");
